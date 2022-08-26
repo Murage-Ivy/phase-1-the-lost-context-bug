@@ -10,3 +10,41 @@ const messageConfig = {
       "Loki"
   ]
 };
+
+
+// const printCard = function () {
+//   console.log(this.frontContent);
+//   console.log(this.insideContent);
+//   this.signatories.forEach(function (signatory) {
+//     const message = `${this.closing[signatory]}, ${signatory}`;
+//     console.log(message);
+//   },this);
+// };
+
+// const printCard = function () {
+//   console.log(this.frontContent);
+//   console.log(this.insideContent);
+//   const contextBoundForEachExpr = function (signatory) {
+//     const message = `${this.closing[signatory]}, ${signatory}`;
+//     console.log(message);
+//   }.bind(this);
+
+//   this.signatories.forEach(contextBoundForEachExpr);
+// };
+
+const printCard = function () {
+  console.log(this.frontContent);
+  console.log(this.insideContent);
+
+
+  console.log("Debug Before forEach: " + this);
+  this.signatories.forEach(function (signatory) {
+   
+    const message = `${outerContext.closing[signatory]}, ${signatory}`;
+    console.log(message);
+  });
+};
+
+
+
+console.log(printCard.call(messageConfig));
